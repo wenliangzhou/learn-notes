@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Wheel(num,size) {
+            this.num = num;
+            this.size = size;
+        }
+        function Model(height,width) {
+            this.height = height;
+            this.width = width;
+        }
+        function Car({num=5,size='20px',height=200,width=100}={}) {
+            Wheel.call(this,num,size);
+            Model.call(this,height,width);
+        }
+        var car = new Car({height:20});
+        console.log(car);
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event.preventDefault()</title>
+</head>
+<body>
+    <p>请点击复选框控件</p>
+    <form>
+        <label for="id-checkbox">Checkboxx</label>
+        <input type="checkbox" id="id-checkbox" name="checkboxx" />
+        <label for="kk">Checkbox</label>
+        <input type="checkbox" name="checkbox" id="kk"/>
+    </form>
+    <script>
+        document.querySelector("#kk").addEventListener("click", function(event){
+            event.preventDefault();  //阻止该复选框被勾选
+            setTimeout(function (){
+              alert("preventDefault会阻止该复选框被勾选.")
+            },0)
+        }, false);
+    </script>
+</body>
+</html>

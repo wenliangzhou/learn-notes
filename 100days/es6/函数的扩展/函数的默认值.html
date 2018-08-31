@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let b = 100;
+        let a = (b = 1) => b;
+         a(); // 100
+         b = 101; // 101 
+
+        let b = 100;
+        let a = (x = b+1) => x;
+         a(); // 101
+         b = 101; // 101 
+
+        //  默认参数是惰性求职的
+        //  函数的length 属性期望函数的参数个数，设置了默认值后。length会失真
+        // 作用域  函数参数内部会生成一个单独了作用域链  相当于let声明，从前到后寻找变量;
+        // 函数的name 属性返回函数名 ，如果是匿名返回anonymous
+        // * 函数的this对象的变化，this指向的是就是定义时所在的对象。而不是使用时所在的对象。
+        // 双冒号  o::f  绑定this对象 ， 让左边的对象作为右边函数的执行环境对象。 即this。
+        // 尾调用  当子函数作为结果返回 真正被调用是会创建一个自己的变量对象。就不需要在对父级变量再引用，所以为调用可以删除之前的内存了。
+    </script>
+</body>
+</html>

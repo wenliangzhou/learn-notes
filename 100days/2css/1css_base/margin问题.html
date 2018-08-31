@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: black;
+            overflow: hidden;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            /* margin-top: 20px; */
+        }
+        .box2{
+            margin-top: 20px;
+            width: 120px;
+            height: 120px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 设置边框，或者添加padding  或者添加 overflow：hidden       触发block format context  规则   此亏则可以改变原有元素的内置渲染规则，改变了百分之0.5左右很少，但至少可以解决塌陷问题
+    display：absolute  display：inline-block-->
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <!-- margin合并问题 垂直方向共用 水平方向不共用-->
+</body>
+</html>

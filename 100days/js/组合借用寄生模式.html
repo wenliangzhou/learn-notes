@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="wlz.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function A(name) {
+            this.name = name;
+        }
+        A.prototype.sayname = function () {
+            console.log(this.name);
+        }
+        function B(age,name) {
+            this.age = age;
+            A.call(this,name)
+        }
+        // B.prototype = Object.create(A.prototype);
+        // B.prototype.constructor = B;
+        // B.prototype.sayage = function () {
+        //     console.log(this.age);
+        // }
+       
+
+        wlz.inherit(B,A);
+        let a = new B(5,'小明');
+    </script>
+</body>
+</html>

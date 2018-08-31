@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function A(name,age,sex) {
+        //     var a = 0;
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        //     function sss() {
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     this.say = sss;
+        // }
+        // var kk = new A();
+        // kk.say();
+        // kk.say();
+        // var kk1 = new A();
+        // kk1.say();
+        // (function foo(x) {
+        //     console.log(arguments);            
+        // })(1,2,3,4,5)
+    // arguments = 4;
+        function foo() {
+            bar.apply(this,arguments);    
+        }
+        function bar() {
+            console.log(arguments);
+            
+        }
+        foo(1,2,3,4,5);
+    </script>
+</body>
+</html>

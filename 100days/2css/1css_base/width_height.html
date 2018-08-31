@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宽度 高度同理</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /* 1. */
+        /* span{
+            height: 100px;
+            background: red;
+            width: 50%;
+            display: block;
+        } */
+        
+        /* 2. */
+        /* div{
+            padding: 20px;
+            background: red;
+            width: 20px;
+        } */
+
+        /* 3. */
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <!--  1.    span非替换行内元素  非替换行内元素会忽略掉width属性 -->
+    <!-- <span></span> -->
+
+    <!--  2.    width指的是内容的宽度  %会继承父级的宽度 -->
+    <!-- <div></div> -->
+
+    <!-- 3.  如果html 高度为百分之百那么这个高度为 可视高度的百分之百 -->
+</body>
+</html>

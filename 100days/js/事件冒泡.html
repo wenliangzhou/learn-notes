@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        margin: 20px;
+        border: 1px solid;
+    }
+</style>
+<body>
+    <div id="kk4">
+            <div id="kk3">
+                <div id="kk1">1</div>
+                <div id="kk2">2</div>
+                
+            </div>
+    </div>
+    <script>
+        
+        for (let i = 1; i < 5; i++) {
+            
+            document.getElementById('kk'+i).addEventListener('click', function () {
+                console.log(this);
+            })
+            // console.log('kkk')
+        }
+        
+        // document.onclick = function () {
+        //     console.log();
+        // }
+    </script>
+</body>
+</html>
