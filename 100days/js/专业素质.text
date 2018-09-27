@@ -35,3 +35,17 @@ AO对象，导致无法释放AO。所以闭包过多的使用会导致内存泄�
 原型链，__proto__是示例与原型的连接。  对象属性， 有数据属性，1.是否读写 2.是否删除 3.是否for in遍历 4. Value  访问器属性
 1.是否遍历  2.是否删除 3.getter 4.setter   definedproperty(对象,对象属性，回调对象。) 每个引用类型的原型的默认值都是Object
 的实例。（如果不是实例就会存在共用，引用关系，会互相影响），但不是所有的引用类型的终端都是Object.protype。
+
+浏览器的绘制：先生成DOM树（深度原则） 再生产CSS树  然后合成 渲染树  然后重头到位渲染。  
+效率问题：增加，删除，定位，修改大小，字体大小等。都会导致reflow 重绘  （浪费资源）；
+         修改CSS，等 只会局部，渲染  （比较节约资源）；
+
+时间线： 1.生成Document document.ready='loading' 2.生成dom树  3.遇到外部css开启线程异步加载CSS 并继续解析文档 4.遇到外部且没有设置 async和defer,
+ JS阻塞线程，等待加载完毕并执行JS后继续解析文档 5.当遇到外部JS，设置有async，开启线程加载JS，并继续解析文档（JS加载完后立即执行）6.遇到IMG 正常解析
+ DOM树，然后开启线程异步加载文件并继续解析文档。异步禁用write()7.当文档解析完毕.document.readystate = 'interactive',设置有defer的JS按照顺序执行 8.document对象触发
+ DOMContentLoaded 时间后 标志着程序从同步脚本执行阶段，转化为事件驱使阶段。 9.当所有异步脚本执行完成后，和img加载完成后.document.readState = 'complete'
+ window 触发onload 事件. 10.从此以异步脚本异步响应方式处理表单输入等交互行为。
+
+ 异步加载需求（1.当某些功能不需要等待DOM树加载完成时执行。2.等待DOM树解析完成时执行。异步加载进来 3.调用时加载。且加载完毕时执行. ）
+
+$(document).ready(function)  和 window.onload 的区别 就是 document.readyState 的时间节点的区别。
