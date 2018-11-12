@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Observer</title>
+</head>
+
+<body>
+
+
+    <script>
+        "use strict";
+        var ofabu = {
+            dingyue: {
+                any: [] // 放所有类型的方法。 这里是订阅者绑定的发方法。   当发布者发布了这个类型的消息，订阅者的方法将会被调用。
+            },
+            dingyuefa: function (fn, type) {
+                type = type || 'any';
+                if (typeof this.dingyue[type] === "undefined") {
+                    this.dingyue[type] = [];
+                }
+                this.dingyue[type].push(fn);
+            },
+            quxiaodingyue: function (fn, type) {
+                this.vis('quxiaodingyue', fn, type);
+            },
+            diaoyon: function (shangxiawen, type) {
+                this.vis('diaoyon', shangxiawen, type);
+            },
+            vis: function (action, arg, type) {
+                
+                var fangfazu = type || 'any',
+                    dingyue = this.dingyue[fangfazu],
+                    i,
+                    max = dingyue.length;
+                for (i = 0; i < max; i += 1) {
+                    if (action === 'diaoyon') {
+                        dingyue[i](arg);
+                    } else {
+                        if (dingyue[i] === arg) {
+                            dingyue.splice(i, 1);
+                        }
+                    }
+                }
+            }
+        };
+
+        function makeofabu(o) {
+            var i;
+            for (i in ofabu) {
+                if (ofabu.hasOwnProperty(i) && typeof ofabu[i] === "function") {
+                    o[i] = ofabu[i];
+                }
+            }
+            o.dingyue = { any: [] };
+        }
+
+        var paper = {
+            daily: function () {
+                this.diaoyon("一个大新闻");
+            },
+            monthly: function () {
+                this.diaoyon("interesting analysis", "monthly");
+            }
+        };
+
+        makeofabu(paper);
+        var joe = {
+            drinkCoffee: function (paper) {
+                console.log('读' + paper);
+            },
+            sundayPreNap: function (monthly) {
+                console.log('About to fall asleep reading this ' + monthly);
+            }
+        };
+        // 订阅者自己的方法自己定义
+        var joe2 = {
+            read:function(paper){
+                console.log(paper);
+            }
+        }
+        
+        paper.dingyuefa(joe.drinkCoffee);
+        paper.dingyuefa(joe.sundayPreNap, 'monthly');
+        paper.daily();
+        paper.daily();
+        paper.daily();
+        paper.monthly();
+
+
+        makeofabu(joe);
+
+        joe.tweet = function (msg) {
+            this.diaoyon(msg);
+        };
+        joe.qinyou = function (msg) {
+            this.diaoyon(msg,'fenzu1');
+        };
+        joe.pengyou = function (msg) {
+            this.diaoyon(msg,'fenzu2');
+        };
+        paper.readTweets = function (tweet) {
+            alert('有一个人发送了推特 ' + tweet);
+        };
+        joe.dingyuefa(paper.readTweets);
+        joe.dingyuefa(paper.readTweets,'fenzu1');
+        joe.dingyuefa(joe2.read,'fenzu2');
+        joe.quxiaodingyue(joe2.read,'fenzu2');
+        // joe.tweet("hated the paper today");
+        // joe.qinyou('发送了一条亲友信息','fenzu1');
+        joe.pengyou('发了一条朋友圈');
+    </script>
+</body>
+
+</html>

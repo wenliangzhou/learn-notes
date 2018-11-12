@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height: 100px;
+            width: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        this指向
+    </div>
+    <script>
+        var list = {
+            init:function () {
+                this.msg = "Hello!"
+                this.bindEvent();
+            },
+            bindEvent:function(){
+                var odiv = document.getElementsByTagName('div')[0];
+                odiv.onclick = this.show;
+            },
+            show:function(){
+                console.log(this);
+            }
+        };
+        list.init();
+    </script>
+</body>
+</html>
