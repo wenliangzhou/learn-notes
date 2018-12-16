@@ -1,0 +1,1 @@
+react  组件化 管理。    react 核心思想  就是  V = f(state);  通信的本质 就是状态的同步    Flux   观察者模式

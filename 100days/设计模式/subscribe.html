@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订阅发布模式</title>
+</head>
+<body>
+    <!-- 发布者对象 -->
+    <script>
+        // 观察者对象
+        // 首先由一个发布者对象observer，和一个订阅者对象。anything
+        // 观察者拥有下面几个基本属性
+        // 1.可以存放订阅者们的订阅方法，且按订阅类型存放同类型数组里面。   （存放的地方）
+        // 2.可以添加订阅的方法
+        // 3.取消订阅的方法。
+        let observer = {
+            subscribes:{
+                any:[]
+            },
+            // 需要参数有 添加的类型，及方法,方法的参数。
+            subscribe:function(fn,type = 'any'){
+                if(!this.subscribes[type]){
+                    this.subscribes[type] = [];
+                }
+                this.subscribes[type].push(fn);
+            },
+            // 参数  移除的类型，及方法。
+            unSubscribe:function(fn,type){
+                this.help('delete',fn,type);
+            },
+            // 发送信号的方法  调用各个函数 并传递参数到订阅者的方法里面。
+            publish:function(arg,type){
+                this.help('action',arg,type);
+            },
+            // 这里可以添加一个帮助方法 解耦循环 subscribes  里面类型的循环。
+            help:function(action,arg,type='any'){
+                let subscribes = this.subscribes[type],
+                    i,
+                    max = subscribes.length;
+                for(i = 0;i<max;i++){
+                    if(action=== 'delete'){
+                        if(subscribes[i] === arg){
+                            subscribes.splice(i,1);
+                        }
+                    }else{
+                        subscribes[i](arg);
+                    }
+                }
+            }
+        };
+
+        // 这里有一个方法可以让任何订阅者 转换成发布者。
+        function makePublisher(o) {
+            for (const key in observer) {
+                if(typeof observer[key] === 'function'){
+                    o[key] = observer[key];
+                }
+            }
+            o.subscribes = {any:[]};
+        }
+        var paper = {
+            daily:function(){
+                this.publish({
+                    a:'今天一条信息',
+                    b:'今天第二条信息'
+                });
+            },
+            monthly:function(){
+                this.publish('月报','monthly');
+            }
+        }
+        // 生成一个发布者
+        makePublisher(paper);
+        console.log(paper);
+        
+        // 订阅者
+        let joe = {
+            drink:function({b}){
+                console.log('just read'+ b);
+            },
+            sun:function(monthly){
+                console.log(monthly);
+            }
+        }
+        paper.subscribe(joe.drink);
+        paper.subscribe(joe.sun,'monthly');
+        paper.daily();
+        paper.monthly();
+    </script>
+</body>
+</html>

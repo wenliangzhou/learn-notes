@@ -76,7 +76,7 @@
         // 订阅者自己的方法自己定义
         var joe2 = {
             read:function(paper){
-                console.log(paper);
+                paper();
             }
         }
         
@@ -105,10 +105,13 @@
         joe.dingyuefa(paper.readTweets);
         joe.dingyuefa(paper.readTweets,'fenzu1');
         joe.dingyuefa(joe2.read,'fenzu2');
-        joe.quxiaodingyue(joe2.read,'fenzu2');
+        // joe.quxiaodingyue(joe2.read,'fenzu2');
         // joe.tweet("hated the paper today");
         // joe.qinyou('发送了一条亲友信息','fenzu1');
-        joe.pengyou('发了一条朋友圈');
+        var fn = function () {
+            console.log('这是追随者的事件')
+        }
+        joe.pengyou(fn);
     </script>
 </body>
 
