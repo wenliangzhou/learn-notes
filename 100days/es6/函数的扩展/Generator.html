@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function* fnA(a,b) {
+            console.log(`第一个yield上面代码`);
+            let res = yield `第一个yield 参数a的值: ${a}`;
+            console.log(`中间打印 res 的值 ${res}`);
+            console.log(`第一个yield和第二个yield 中间的代码`);
+            let res2 = yield `第二个yield 参数b的值: ${b}`;
+            console.log(`最下面的代码`);
+            console.log(`res 的值 ${res}`);
+            console.log(`res2 的值 ${res2}`);
+        }
+        let iterator = fnA(2,3);
+        let v = iterator.next();
+        let v2 = iterator.next('kk');
+        // let v3 = iterator.next();
+        console.log(`v 的值是 ：`);
+        console.log(v);
+        console.log('v2的值是 :');
+        console.log(v2);
+        console.log('v3的值是 :');
+        // console.log(v3);
+        
+        
+        
+    </script>
+</body>
+</html>
