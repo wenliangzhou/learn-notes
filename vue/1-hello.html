@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <link rel="stylesheet" href="./1-css.css">
+</head>
+
+<body>
+
+
+    <div id="kkk" >
+        <blog-post  v-bind="post">
+            <template v-slot:header>
+                <h1>Here might be a page title</h1>
+              </template>
+            
+              <p>A paragraph for the main content.</p>
+              <p>And another one.</p>
+            
+              <template v-slot:footer>
+                <p>Here's some contact info</p>
+              </template>
+        </blog-post>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./1-main.js"></script>
+</body>
+
+</html>

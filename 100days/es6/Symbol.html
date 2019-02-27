@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let s1 = Symbol.for('foo');
+        // function a() {
+        //     let s2 = Symbol.for('foo');
+        //     console.log(s1=== s2);
+        // }
+        // a()
+        // const FOO_KEY = {kk:2};
+        class Collection {
+            get [Symbol.toStringTag]() {
+                return 'xxx';
+            }
+        }
+        function* a() {
+            
+        };
+        console.log(a.toString());
+    </script>
+</body>
+
+</html>
