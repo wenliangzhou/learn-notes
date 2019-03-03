@@ -23,5 +23,10 @@ let app = new Vue({
       id: 1,
       title: 'My Journey with Vue'
     }
+  },
+  created:function () {
+   
+    
   }
 })
+console.log(app.$attrs);
